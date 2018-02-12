@@ -94,9 +94,12 @@ public class DownloaderServiceApplication extends SpringBootServletInitializer {
             GuavaCache byDatasetId = new GuavaCache("byDatasetId", CacheBuilder.newBuilder()
                     .expireAfterWrite(24, TimeUnit.HOURS)
                     .build());
+            GuavaCache datasetByFile = new GuavaCache("datasetByFile", CacheBuilder.newBuilder()
+                    .expireAfterWrite(24, TimeUnit.HOURS)
+                    .build());
 
             simpleCacheManager.setCaches(Arrays.asList(bySimpleFileId, byFileId, 
-                    fileById, byFileIndexId, byDatasetId));
+                    fileById, byFileIndexId, byDatasetId, datasetByFile));
             return simpleCacheManager;
         }
 
