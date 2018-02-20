@@ -18,12 +18,12 @@
  * Created: 17-Feb-2017
  */
 
-CREATE TABLE dev_ega_downloader.file_index_file (
+CREATE TABLE dev_ega_file.file_index_file (
 	file_id varchar(128) NULL,
 	index_file_id varchar(128) NULL,
 )
 WITH (
 	OIDS=FALSE
 );
-CREATE UNIQUE INDEX dataset_id_idx ON dev_ega_downloader.file_index_file (file_id);
-CREATE INDEX file_id_idx ON dev_ega_downloader.file_index_file (file_id);
+CREATE UNIQUE INDEX dataset_id_idx ON dev_ega_file.file_index_file (file_id);
+CREATE INDEX file_id_idx ON dev_ega_file.file_index_file (file_id);

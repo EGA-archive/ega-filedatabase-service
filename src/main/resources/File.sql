@@ -18,7 +18,7 @@
  * Created: 17-Feb-2017
  */
 
-CREATE TABLE dev_ega_downloader.file (
+CREATE TABLE file.file (
 	file_id  varchar(128) NULL,
 	file_name varchar(256) NULL,
 	file_size int8 NULL,
@@ -29,4 +29,4 @@ CREATE TABLE dev_ega_downloader.file (
 WITH (
 	OIDS=FALSE
 );
-CREATE UNIQUE INDEX file_id_idx ON dev_ega_downloader.file (file_id);
+CREATE UNIQUE INDEX file_id_idx ON dev_ega_file.file (file_id);

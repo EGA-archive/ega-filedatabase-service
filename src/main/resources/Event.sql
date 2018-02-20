@@ -18,8 +18,8 @@
  * Created: 17-Feb-2017
  */
 
-CREATE TABLE dev_ega_downloader.event (
-	event_id int8 NOT NULL DEFAULT nextval('dev_ega_downloader.event_event_id_seq'::regclass),
+CREATE TABLE dev_ega_file.event (
+	event_id int8 NOT NULL DEFAULT nextval('dev_ega_file.event_event_id_seq'::regclass),
 	client_ip varchar(45) NOT NULL,
 	event varchar(256) NOT NULL,
 	download_ticket varchar(256) NOT NULL,

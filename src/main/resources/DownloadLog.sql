@@ -18,8 +18,8 @@
  * Created: 17-Feb-2017
  */
 
-CREATE TABLE pea_test.download_log (
-	download_log_id int8 NOT NULL DEFAULT nextval('pea_test.download_log_new_download_log_id_seq'::regclass),
+CREATE TABLE dev_ega_file.download_log (
+	download_log_id int8 NOT NULL DEFAULT nextval('dev_ega_file.download_log_new_download_log_id_seq'::regclass),
 	client_ip varchar(45) NOT NULL,
 	server varchar(45) NOT NULL,
 	email varchar(256) NOT NULL,
