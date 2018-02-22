@@ -20,22 +20,20 @@ import eu.elixir.ega.ebi.downloader.domain.entity.Event;
 import eu.elixir.ega.ebi.downloader.service.LogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
-import org.springframework.web.bind.annotation.ResponseStatus;
 
 /**
- *
  * @author asenf
  */
 @RestController
 @RequestMapping("/log")
 public class LogController {
-    
+
     @Autowired
     private LogService logService;
 

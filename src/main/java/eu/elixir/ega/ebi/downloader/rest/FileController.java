@@ -20,31 +20,29 @@ import eu.elixir.ega.ebi.downloader.domain.entity.FileDataset;
 import eu.elixir.ega.ebi.downloader.domain.entity.FileIndexFile;
 import eu.elixir.ega.ebi.downloader.service.FileService;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
- *
  * @author asenf
  */
 @RestController
 @RequestMapping("/file")
 public class FileController {
-    
+
     @Autowired
     private FileService fileService;
-    
+
     @RequestMapping(value = "/{file_id}", method = GET)
     @ResponseBody
     public Iterable<File> get(@PathVariable String file_id) {
         return fileService.getFileByStableId(file_id);
     }
-    
+
     @RequestMapping(value = "/{file_id}/datasets", method = GET)
     @ResponseBody
     public Iterable<FileDataset> getDatasets(@PathVariable String file_id) {
