@@ -19,9 +19,8 @@ import eu.elixir.ega.ebi.downloader.domain.entity.Event;
 import org.springframework.data.repository.CrudRepository;
 
 /**
- *
  * @author asenf
  */
 public interface EventRepository extends CrudRepository<Event, Long> {
-    
+
 }

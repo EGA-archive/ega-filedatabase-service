@@ -16,8 +16,6 @@
 package eu.elixir.ega.ebi.downloader;
 
 import com.google.common.cache.CacheBuilder;
-import java.util.Arrays;
-import java.util.concurrent.TimeUnit;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
@@ -26,15 +24,16 @@ import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.cache.guava.GuavaCache;
 import org.springframework.cache.support.SimpleCacheManager;
-import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
-import org.springframework.cloud.netflix.hystrix.EnableHystrix;
 import org.springframework.context.annotation.Bean;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
+
+import java.util.Arrays;
+import java.util.concurrent.TimeUnit;
 
 @SpringBootApplication
 @EnableCaching
@@ -44,71 +43,71 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableDiscoveryClient
 public class DownloaderServiceApplication extends SpringBootServletInitializer {
 
-        protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-                return application.sources(DownloaderServiceApplication.class);
-        }
-        
-	public static void main(String[] args) {
-		SpringApplication.run(DownloaderServiceApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(DownloaderServiceApplication.class, args);
+    }
 
-        @Bean
-        public Docket swaggerSettings() {
-            return new Docket(DocumentationType.SWAGGER_2)
-                    .select()
-                    .apis(RequestHandlerSelectors.any())
-                    .paths(PathSelectors.any())
-                    .build()
-                    .pathMapping("/");
-        }
+    protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
+        return application.sources(DownloaderServiceApplication.class);
+    }
 
-	//@Bean
-	//public CacheManager cacheManager() {
-        //
-	//	ConcurrentMapCache simplefilecache = new ConcurrentMapCache("bySimpleFileId");
-	//	ConcurrentMapCache filecache = new ConcurrentMapCache("byFileId");
-	//	ConcurrentMapCache fileindexcache = new ConcurrentMapCache("byFileIndexId");
-	//	ConcurrentMapCache datasetcache = new ConcurrentMapCache("byDatasetId");
-        //
-	//	SimpleCacheManager manager = new SimpleCacheManager();
-	//	manager.setCaches(Arrays.asList(simplefilecache, filecache, fileindexcache, datasetcache));
-        //
-	//	return manager;
-	//}     
+    @Bean
+    public Docket swaggerSettings() {
+        return new Docket(DocumentationType.SWAGGER_2)
+                .select()
+                .apis(RequestHandlerSelectors.any())
+                .paths(PathSelectors.any())
+                .build()
+                .pathMapping("/");
+    }
 
-        @Bean
-        public CacheManager cacheManager() {
-            SimpleCacheManager simpleCacheManager = new SimpleCacheManager();
-            GuavaCache bySimpleFileId = new GuavaCache("bySimpleFileId", CacheBuilder.newBuilder()
-                    .expireAfterWrite(24, TimeUnit.HOURS)
-                    .build());
-            GuavaCache byFileId = new GuavaCache("byFileId", CacheBuilder.newBuilder()
-                    .expireAfterWrite(24, TimeUnit.HOURS)
-                    .build());
-            GuavaCache fileById = new GuavaCache("fileById", CacheBuilder.newBuilder()
-                    .expireAfterWrite(24, TimeUnit.HOURS)
-                    .build());
-            GuavaCache byFileIndexId = new GuavaCache("byFileIndexId", CacheBuilder.newBuilder()
-                    .expireAfterWrite(24, TimeUnit.HOURS)
-                    .build());
-            GuavaCache byDatasetId = new GuavaCache("byDatasetId", CacheBuilder.newBuilder()
-                    .expireAfterWrite(24, TimeUnit.HOURS)
-                    .build());
-            GuavaCache datasetByFile = new GuavaCache("datasetByFile", CacheBuilder.newBuilder()
-                    .expireAfterWrite(24, TimeUnit.HOURS)
-                    .build());
-            GuavaCache fileIndexFile = new GuavaCache("fileIndexFile", CacheBuilder.newBuilder()
-                    .expireAfterWrite(24, TimeUnit.HOURS)
-                    .build());
-            GuavaCache datasetFiles = new GuavaCache("datasetFiles", CacheBuilder.newBuilder()
-                    .expireAfterWrite(24, TimeUnit.HOURS)
-                    .build());
+    //@Bean
+    //public CacheManager cacheManager() {
+    //
+    //	ConcurrentMapCache simplefilecache = new ConcurrentMapCache("bySimpleFileId");
+    //	ConcurrentMapCache filecache = new ConcurrentMapCache("byFileId");
+    //	ConcurrentMapCache fileindexcache = new ConcurrentMapCache("byFileIndexId");
+    //	ConcurrentMapCache datasetcache = new ConcurrentMapCache("byDatasetId");
+    //
+    //	SimpleCacheManager manager = new SimpleCacheManager();
+    //	manager.setCaches(Arrays.asList(simplefilecache, filecache, fileindexcache, datasetcache));
+    //
+    //	return manager;
+    //}
 
-            simpleCacheManager.setCaches(Arrays.asList(bySimpleFileId, byFileId, 
-                    fileById, byFileIndexId, byDatasetId, datasetByFile, fileIndexFile,
-                    datasetFiles));
-            return simpleCacheManager;
-        }
+    @Bean
+    public CacheManager cacheManager() {
+        SimpleCacheManager simpleCacheManager = new SimpleCacheManager();
+        GuavaCache bySimpleFileId = new GuavaCache("bySimpleFileId", CacheBuilder.newBuilder()
+                .expireAfterWrite(24, TimeUnit.HOURS)
+                .build());
+        GuavaCache byFileId = new GuavaCache("byFileId", CacheBuilder.newBuilder()
+                .expireAfterWrite(24, TimeUnit.HOURS)
+                .build());
+        GuavaCache fileById = new GuavaCache("fileById", CacheBuilder.newBuilder()
+                .expireAfterWrite(24, TimeUnit.HOURS)
+                .build());
+        GuavaCache byFileIndexId = new GuavaCache("byFileIndexId", CacheBuilder.newBuilder()
+                .expireAfterWrite(24, TimeUnit.HOURS)
+                .build());
+        GuavaCache byDatasetId = new GuavaCache("byDatasetId", CacheBuilder.newBuilder()
+                .expireAfterWrite(24, TimeUnit.HOURS)
+                .build());
+        GuavaCache datasetByFile = new GuavaCache("datasetByFile", CacheBuilder.newBuilder()
+                .expireAfterWrite(24, TimeUnit.HOURS)
+                .build());
+        GuavaCache fileIndexFile = new GuavaCache("fileIndexFile", CacheBuilder.newBuilder()
+                .expireAfterWrite(24, TimeUnit.HOURS)
+                .build());
+        GuavaCache datasetFiles = new GuavaCache("datasetFiles", CacheBuilder.newBuilder()
+                .expireAfterWrite(24, TimeUnit.HOURS)
+                .build());
+
+        simpleCacheManager.setCaches(Arrays.asList(bySimpleFileId, byFileId,
+                fileById, byFileIndexId, byDatasetId, datasetByFile, fileIndexFile,
+                datasetFiles));
+        return simpleCacheManager;
+    }
 
 /*        
         @Bean
@@ -131,5 +130,5 @@ public class DownloaderServiceApplication extends SpringBootServletInitializer {
             simpleCacheManager.setCaches(Arrays.asList(fileById, datasetByFile, datasetFiles, fileIndexFile));
             return simpleCacheManager;
         }
-*/        
+*/
 }

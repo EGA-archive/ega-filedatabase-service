@@ -16,28 +16,28 @@
 package eu.elixir.ega.ebi.downloader.service.internal;
 
 import eu.elixir.ega.ebi.downloader.domain.entity.DownloadLog;
-import eu.elixir.ega.ebi.downloader.domain.repository.DownloadLogRepository;
 import eu.elixir.ega.ebi.downloader.domain.entity.Event;
+import eu.elixir.ega.ebi.downloader.domain.repository.DownloadLogRepository;
 import eu.elixir.ega.ebi.downloader.domain.repository.EventRepository;
 import eu.elixir.ega.ebi.downloader.service.LogService;
-import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
+
 /**
- *
  * @author asenf
  */
 @Service
 @Transactional
 public class LogServiceImpl implements LogService {
-    
+
     @Autowired
     private DownloadLogRepository logRepository;
 
     @Autowired
     private EventRepository eventRepository;
-    
+
     @Override
     public Event logEvent(Event event) {
         return eventRepository.save(event);
@@ -47,5 +47,5 @@ public class LogServiceImpl implements LogService {
     public DownloadLog logDownload(DownloadLog downloadLog) {
         return logRepository.save(downloadLog);
     }
-    
+
 }

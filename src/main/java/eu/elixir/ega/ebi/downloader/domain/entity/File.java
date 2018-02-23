@@ -15,18 +15,18 @@
  */
 package eu.elixir.ega.ebi.downloader.domain.entity;
 
-import java.io.Serializable;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.validation.constraints.Size;
+import java.io.Serializable;
+
 /**
- *
  * @author asenf
  */
 @NoArgsConstructor
@@ -35,45 +35,45 @@ import lombok.Setter;
 @Getter
 @Entity
 public class File implements Serializable {
-    
-        @Id
-        @Size(max=128)
-        @Column(name = "file_id", insertable = false, updatable = false, length=128)
-        private String fileId;
-        
-        @Size(max=256)
-        @Column(name = "file_name", insertable = false, updatable = false, length=256)
-        private String fileName;
-        
-        @Column(name = "file_size", insertable = false, updatable = false)
-        private long fileSize;
-        
-        @Size(max=128)
-        @Column(insertable = false, updatable = false, length=128)
-        private String checksum;
-        
-        @Size(max=12)
-        @Column(name = "checksum_type", insertable = false, updatable = false, length=12)
-        private String checksumType;
-        
-        @Size(max=13)
-        @Column(name = "file_status", insertable = false, updatable = false, length=13)
-        private String fileStatus;
-        
-        /*
-         *
-         */
-        
-        public String toString() {
-                String line = "";
-                
-                line += "File ID: " + fileId + "\n" +
-                    "File Name: " + fileName + "\n" +
-                    "File Size: " + fileSize + "\n" +
-                    "Checksum: " + checksum + "\n" +
-                    "Checksum Type: " + checksumType + "\n" +
-                    "Status: " + fileStatus;
-                
-                return line;
-        }
+
+    @Id
+    @Size(max = 128)
+    @Column(name = "file_id", insertable = false, updatable = false, length = 128)
+    private String fileId;
+
+    @Size(max = 256)
+    @Column(name = "file_name", insertable = false, updatable = false, length = 256)
+    private String fileName;
+
+    @Column(name = "file_size", insertable = false, updatable = false)
+    private long fileSize;
+
+    @Size(max = 128)
+    @Column(insertable = false, updatable = false, length = 128)
+    private String checksum;
+
+    @Size(max = 12)
+    @Column(name = "checksum_type", insertable = false, updatable = false, length = 12)
+    private String checksumType;
+
+    @Size(max = 13)
+    @Column(name = "file_status", insertable = false, updatable = false, length = 13)
+    private String fileStatus;
+
+    /*
+     *
+     */
+
+    public String toString() {
+        String line = "";
+
+        line += "File ID: " + fileId + "\n" +
+                "File Name: " + fileName + "\n" +
+                "File Size: " + fileSize + "\n" +
+                "Checksum: " + checksum + "\n" +
+                "Checksum Type: " + checksumType + "\n" +
+                "Status: " + fileStatus;
+
+        return line;
+    }
 }
