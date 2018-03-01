@@ -18,8 +18,8 @@ package eu.elixir.ega.ebi.downloader.rest;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
+import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.when;
-import static org.mockito.Mockito.any;
 import static org.springframework.http.HttpStatus.OK;
 import static org.springframework.http.MediaType.APPLICATION_JSON;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -40,6 +40,11 @@ import org.springframework.test.web.servlet.MockMvc;
 import eu.elixir.ega.ebi.downloader.dto.DownloaderFile;
 import eu.elixir.ega.ebi.downloader.service.FileService;
 
+/**
+ * Test class for {@link DatasetController}.
+ * 
+ * @author anand
+ */
 @RunWith(SpringRunner.class)
 @WebMvcTest(DatasetController.class)
 @TestPropertySource(locations = "classpath:application-test.properties")
@@ -51,8 +56,14 @@ public class DatasetControllerTest {
 	@MockBean
 	private FileService fileService;
 
+	/**
+	 * Test {@link DatasetController#getDatasetFiles(String)}. Verify the api
+	 * call returns status is OK.
+	 * 
+	 * @throws Exception
+	 */
 	@Test
-	public void testGetFormats() throws Exception {
+	public void testGetDatasetFiles() throws Exception {
 		final List<DownloaderFile> downloadList = new ArrayList<>();
 		final DownloaderFile downloaderFile = new DownloaderFile();
 		downloaderFile.setFileId("fileId");

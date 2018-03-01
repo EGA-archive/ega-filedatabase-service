@@ -42,6 +42,11 @@ import eu.elixir.ega.ebi.downloader.domain.entity.FileDataset;
 import eu.elixir.ega.ebi.downloader.domain.entity.FileIndexFile;
 import eu.elixir.ega.ebi.downloader.service.FileService;
 
+/**
+ * Test class for {@link FileController}.
+ * 
+ * @author anand
+ */
 @RunWith(SpringRunner.class)
 @WebMvcTest(FileController.class)
 @TestPropertySource(locations = "classpath:application-test.properties")
@@ -53,6 +58,12 @@ public class FileControllerTest {
 	@MockBean
 	private FileService fileService;
 
+	/**
+	 * Test {@link FileController#get(String)}. Verify the api call returns
+	 * status is OK.
+	 * 
+	 * @throws Exception
+	 */
 	@Test
 	public void testGet() throws Exception {
 		final List<File> files = new ArrayList<>();
@@ -65,6 +76,12 @@ public class FileControllerTest {
 		assertThat(response.getStatus(), equalTo(OK.value()));
 	}
 
+	/**
+	 * Test {@link FileController#getDatasets(String)}. Verify the api call
+	 * returns status is OK.
+	 * 
+	 * @throws Exception
+	 */
 	@Test
 	public void testGetDatasets() throws Exception {
 		final List<FileDataset> fileDatasets = new ArrayList<>();
@@ -77,6 +94,12 @@ public class FileControllerTest {
 		assertThat(response.getStatus(), equalTo(OK.value()));
 	}
 
+	/**
+	 * Test {@link FileController#getIndex(String)}. Verify the api call returns
+	 * status is OK.
+	 * 
+	 * @throws Exception
+	 */
 	@Test
 	public void testGetIndex() throws Exception {
 		final List<FileIndexFile> fileIndexFiles = new ArrayList<>();

@@ -42,6 +42,11 @@ import eu.elixir.ega.ebi.downloader.domain.entity.DownloadLog;
 import eu.elixir.ega.ebi.downloader.domain.entity.Event;
 import eu.elixir.ega.ebi.downloader.service.LogService;
 
+/**
+ * Test class for {@link LogController}.
+ * 
+ * @author anand
+ */
 @RunWith(SpringRunner.class)
 @WebMvcTest(LogController.class)
 @TestPropertySource(locations = "classpath:application-test.properties")
@@ -53,6 +58,12 @@ public class LogControllerTest {
 	@MockBean
 	private LogService logService;
 
+	/**
+	 * Test {@link LogController#putEvent(Event)}. Verify the api call returns
+	 * status is NO_CONTENT.
+	 * 
+	 * @throws Exception
+	 */
 	@Test
 	public void testPutEvent() throws Exception {
 		Event input = new Event();
@@ -68,6 +79,12 @@ public class LogControllerTest {
 		assertThat(response.getStatus(), equalTo(NO_CONTENT.value()));
 	}
 
+	/**
+	 * Test {@link LogController#putDownload(DownloadLog)}. Verify the api call
+	 * returns status is NO_CONTENT.
+	 * 
+	 * @throws Exception
+	 */
 	@Test
 	public void testPutDownload() throws Exception {
 		DownloadLog input = new DownloadLog();

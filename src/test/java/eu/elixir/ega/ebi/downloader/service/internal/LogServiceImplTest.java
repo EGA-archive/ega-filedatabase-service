@@ -35,6 +35,11 @@ import eu.elixir.ega.ebi.downloader.domain.entity.Event;
 import eu.elixir.ega.ebi.downloader.domain.repository.DownloadLogRepository;
 import eu.elixir.ega.ebi.downloader.domain.repository.EventRepository;
 
+/**
+ * Test class for {@link LogServiceImpl}.
+ * 
+ * @author anand
+ */
 @RunWith(SpringRunner.class)
 public class LogServiceImplTest {
 
@@ -53,11 +58,20 @@ public class LogServiceImplTest {
 		when(logRepository.save(any(DownloadLog.class))).thenReturn(getDownloadLog());
 	}
 
+	/**
+	 * Test class for {@link LogServiceImpl#logEvent(Event)}. Verify the logged
+	 * event with the input event.
+	 * 
+	 */
 	@Test
 	public void testGetLogEvent() {
 		assertThat(logServiceImpl.logEvent(getEvent()).getEvent(), equalTo(getEvent().getEvent()));
 	}
 
+	/**
+	 * Test class for {@link LogServiceImpl#logDownload(DownloadLog)}. Verify
+	 * the download log fileId with the input fileId.
+	 */
 	@Test
 	public void testGetLogDownload() {
 		assertThat(logServiceImpl.logDownload(getDownloadLog()).getFileId(), equalTo(getDownloadLog().getFileId()));
@@ -78,7 +92,7 @@ public class LogServiceImplTest {
 	@TestConfiguration
 	static class FileServiceImplTestContextConfiguration {
 		@Bean
-		public LogServiceImpl fileService() {
+		public LogServiceImpl logService() {
 			return new LogServiceImpl();
 		}
 	}

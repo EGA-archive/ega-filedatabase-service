@@ -39,6 +39,11 @@ import eu.elixir.ega.ebi.downloader.domain.repository.FileDatasetRepository;
 import eu.elixir.ega.ebi.downloader.domain.repository.FileIndexFileRepository;
 import eu.elixir.ega.ebi.downloader.domain.repository.FileRepository;
 
+/**
+ * Test class for {@link FileServiceImpl}.
+ * 
+ * @author anand
+ */
 @RunWith(SpringRunner.class)
 public class FileServiceImplTest {
 
@@ -62,24 +67,40 @@ public class FileServiceImplTest {
 		when(fileIndexFileRepository.findByFileId(any(String.class))).thenReturn(getFileIndexFile());
 	}
 
+	/**
+	 * Test class for {@link FileServiceImpl#getFileByStableId(String)}. Verify
+	 * fileId retrieved from db mock call.
+	 */
 	@Test
 	public void testGetFileByStableId() {
 		assertThat(fileServiceImpl.getFileByStableId("fileId").iterator().next().getFileId(), equalTo(getFile()
 				.iterator().next().getFileId()));
 	}
 
+	/**
+	 * Test class for {@link FileServiceImpl#getFileDatasetByFileId(String)}.
+	 * Verify fileId retrieved from db mock call.
+	 */
 	@Test
 	public void testGetFileDatasetByFileId() {
 		assertThat(fileServiceImpl.getFileDatasetByFileId("fileId").iterator().next().getFileId(),
 				equalTo(getFileDataset().iterator().next().getFileId()));
 	}
 
+	/**
+	 * Test class for {@link FileServiceImpl#getDatasetFiles(String)}. Verify
+	 * fileId retrieved from db mock call.
+	 */
 	@Test
 	public void testGetDatasetFiles() {
 		assertThat(fileServiceImpl.getDatasetFiles("datasetId").iterator().next().getFileId(), equalTo(getFileDataset()
 				.iterator().next().getFileId()));
 	}
 
+	/**
+	 * Test class for {@link FileServiceImpl#getFileIndexByFileId(String)}.
+	 * Verify fileId retrieved from db mock call.
+	 */
 	@Test
 	public void testGetFileIndexByFileId() {
 		assertThat(fileServiceImpl.getFileIndexByFileId("fileId").iterator().next().getFileId(),
@@ -107,5 +128,4 @@ public class FileServiceImplTest {
 			return new FileServiceImpl();
 		}
 	}
-
 }

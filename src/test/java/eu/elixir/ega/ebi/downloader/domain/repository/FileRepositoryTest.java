@@ -30,6 +30,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 import eu.elixir.ega.ebi.downloader.domain.entity.File;
 
 /**
+ * Test class for {@link FileRepository}.
+ * 
  * @author anand
  */
 @RunWith(SpringRunner.class)
@@ -45,6 +47,10 @@ public class FileRepositoryTest {
 	private File file;
 	private Iterable<File> fileDatasetOutput;
 
+	/**
+	 * Test {@link FileRepository#findByFileId(String)}. Verify the {@link File}
+	 * retrieved from db.
+	 */
 	@Test
 	public void testFindByFileId() {
 		givenIndexFile();
