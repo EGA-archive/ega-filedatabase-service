@@ -37,7 +37,6 @@ import java.util.concurrent.TimeUnit;
 
 @SpringBootApplication
 @EnableCaching
-@EnableSwagger2
 //@EnableCircuitBreaker
 //@EnableHystrix
 @EnableDiscoveryClient
@@ -49,16 +48,6 @@ public class DownloaderServiceApplication extends SpringBootServletInitializer {
 
     protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
         return application.sources(DownloaderServiceApplication.class);
-    }
-
-    @Bean
-    public Docket swaggerSettings() {
-        return new Docket(DocumentationType.SWAGGER_2)
-                .select()
-                .apis(RequestHandlerSelectors.any())
-                .paths(PathSelectors.any())
-                .build()
-                .pathMapping("/");
     }
 
     //@Bean
