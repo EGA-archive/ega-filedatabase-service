@@ -22,15 +22,14 @@ import eu.elixir.ega.ebi.downloader.dto.DownloaderFile;
 
 
 /**
- *
  * @author asenf
  */
 public interface FileService {
-    
+
     public Iterable<File> getFileByStableId(String fileIDs);
-    
+
     public Iterable<FileDataset> getFileDatasetByFileId(String fileID);
-        
+
     public Iterable<DownloaderFile> getDatasetFiles(String datasetId);
 
     public Iterable<FileIndexFile> getFileIndexByFileId(String fileID);

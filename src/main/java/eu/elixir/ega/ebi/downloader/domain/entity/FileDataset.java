@@ -15,18 +15,18 @@
  */
 package eu.elixir.ega.ebi.downloader.domain.entity;
 
-import java.io.Serializable;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.validation.constraints.Size;
+import java.io.Serializable;
+
 /**
- *
  * @author asenf
  */
 @NoArgsConstructor
@@ -35,26 +35,26 @@ import lombok.Setter;
 @Getter
 @Entity
 public class FileDataset implements Serializable {
-    
-        @Id
-        @Size(max=128)
-        @Column(name = "file_id", insertable = false, updatable = false, length=128)
-        private String fileId;
-        
-        @Size(max=128)
-        @Column(name = "dataset_id", insertable = false, updatable = false, length=128)
-        private String datasetId;
-        
-        /*
-         *
-         */
-        
-        public String toString() {
-                String line = "";
-                
-                line += "File ID: " + fileId + "\n" +
-                    "Dataset ID: " + datasetId;
-                
-                return line;
-        }
+
+    @Id
+    @Size(max = 128)
+    @Column(name = "file_id", insertable = false, updatable = false, length = 128)
+    private String fileId;
+
+    @Size(max = 128)
+    @Column(name = "dataset_id", insertable = false, updatable = false, length = 128)
+    private String datasetId;
+
+    /*
+     *
+     */
+
+    public String toString() {
+        String line = "";
+
+        line += "File ID: " + fileId + "\n" +
+                "Dataset ID: " + datasetId;
+
+        return line;
+    }
 }

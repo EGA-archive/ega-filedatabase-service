@@ -23,50 +23,50 @@ import eu.elixir.ega.ebi.downloader.domain.repository.FileIndexFileRepository;
 import eu.elixir.ega.ebi.downloader.domain.repository.FileRepository;
 import eu.elixir.ega.ebi.downloader.dto.DownloaderFile;
 import eu.elixir.ega.ebi.downloader.service.FileService;
-import java.util.ArrayList;
-import java.util.Iterator;
-import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
+import java.util.ArrayList;
+import java.util.Iterator;
+
 /**
- *
  * @author asenf
  */
 @Service
 @Transactional
 public class FileServiceImpl implements FileService {
-    
+
     @Autowired
     private FileRepository fileRepository;
 
     @Autowired
     private FileDatasetRepository fileDatasetRepository;
-    
+
     @Autowired
     private FileIndexFileRepository fileIndexFileRepository;
-    
+
     @Override
-    @Cacheable(cacheNames="fileById")
+    @Cacheable(cacheNames = "fileById")
     public Iterable<File> getFileByStableId(String fileIDs) {
         return fileRepository.findByFileId(fileIDs);
     }
 
     @Override
-    @Cacheable(cacheNames="datasetByFile")
+    @Cacheable(cacheNames = "datasetByFile")
     public Iterable<FileDataset> getFileDatasetByFileId(String fileID) {
         return fileDatasetRepository.findByFileId(fileID);
     }
-    
+
     @Override
-    @Cacheable(cacheNames="datasetFiles")
+    @Cacheable(cacheNames = "datasetFiles")
     public Iterable<DownloaderFile> getDatasetFiles(String datasetId) {
         // Get File IDs
         Iterable<FileDataset> fileIds = fileDatasetRepository.findByDatasetId(datasetId);
         Iterator<FileDataset> iter = fileIds.iterator();
         ArrayList<DownloaderFile> result = new ArrayList<DownloaderFile>();
-        
+
         // Get Files
         while (iter.hasNext()) {
             FileDataset next = iter.next();
@@ -75,20 +75,20 @@ public class FileServiceImpl implements FileService {
             while (iterator.hasNext()) {
                 File file = iterator.next();
                 result.add(new DownloaderFile(file.getFileId(),
-                                              next.getDatasetId(),
-                                              file.getFileName(),
-                                              file.getFileSize(),
-                                              file.getChecksum(),
-                                              file.getChecksumType(),
-                                              file.getFileStatus()));
+                        next.getDatasetId(),
+                        file.getFileName(),
+                        file.getFileSize(),
+                        file.getChecksum(),
+                        file.getChecksumType(),
+                        file.getFileStatus()));
             }
         }
-               
+
         return result;
     }
-    
+
     @Override
-    @Cacheable(cacheNames="fileIndexFile")
+    @Cacheable(cacheNames = "fileIndexFile")
     public Iterable<FileIndexFile> getFileIndexByFileId(String fileID) {
         return fileIndexFileRepository.findByFileId(fileID);
     }

@@ -19,9 +19,8 @@ import eu.elixir.ega.ebi.downloader.domain.entity.DownloadLog;
 import org.springframework.data.repository.CrudRepository;
 
 /**
- *
  * @author asenf
  */
 public interface DownloadLogRepository extends CrudRepository<DownloadLog, Long> {
-    
+
 }

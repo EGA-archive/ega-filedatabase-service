@@ -19,13 +19,12 @@ import eu.elixir.ega.ebi.downloader.domain.entity.DownloadLog;
 import eu.elixir.ega.ebi.downloader.domain.entity.Event;
 
 /**
- *
  * @author asenf
  */
 public interface LogService {
-    
-        public Event logEvent(Event event);
-        
-        public DownloadLog logDownload(DownloadLog downloadLog);
-        
+
+    public Event logEvent(Event event);
+
+    public DownloadLog logDownload(DownloadLog downloadLog);
+
 }

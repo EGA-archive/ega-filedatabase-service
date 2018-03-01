@@ -15,25 +15,18 @@
  */
 package eu.elixir.ega.ebi.downloader.domain.entity;
 
-import java.io.Serializable;
-import java.sql.Timestamp;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import java.io.Serializable;
+import java.sql.Timestamp;
+
 /**
- *
  * @author asenf
  */
 @NoArgsConstructor
@@ -43,56 +36,56 @@ import lombok.Setter;
 @Entity
 @Table(name = "event")
 public class Event implements Serializable {
-    
-        @Id
-        @NotNull
-        @GeneratedValue(strategy=GenerationType.IDENTITY)
-        @Column(name="event_id", nullable=false)
-        private Long eventId;
-        
-        @NotNull
-        @Size(max=45)
-        @Column(name="client_ip", nullable=false, length=45)
-        private String clientIp;
-        
-        @NotNull
-        @Size(max=256)
-        @Column(nullable=false, length=256)
-        private String event;
-        
-        @NotNull
-        @Size(max=256)
-        @Column(name="download_ticket", nullable=false, length=256)
-        private String downloadTicket;
-        
-        @NotNull
-        @Size(max=256)
-        @Column(name="event_type", nullable=false, length=256)
-        private String eventType;
-        
-        @NotNull
-        @Size(max=256)
-        @Column(name="email", nullable=false, length=256)
-        private String email;
-        
-        @NotNull
-        @Column(nullable=false)
-        private Timestamp created;
 
-        /*
-         * 
-         */
-        public String toString() {
-            String line = "";
-            
-            line += "ID: " + eventId + "\n" +
+    @Id
+    @NotNull
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "event_id", nullable = false)
+    private Long eventId;
+
+    @NotNull
+    @Size(max = 45)
+    @Column(name = "client_ip", nullable = false, length = 45)
+    private String clientIp;
+
+    @NotNull
+    @Size(max = 256)
+    @Column(nullable = false, length = 256)
+    private String event;
+
+    @NotNull
+    @Size(max = 256)
+    @Column(name = "download_ticket", nullable = false, length = 256)
+    private String downloadTicket;
+
+    @NotNull
+    @Size(max = 256)
+    @Column(name = "event_type", nullable = false, length = 256)
+    private String eventType;
+
+    @NotNull
+    @Size(max = 256)
+    @Column(name = "email", nullable = false, length = 256)
+    private String email;
+
+    @NotNull
+    @Column(nullable = false)
+    private Timestamp created;
+
+    /*
+     *
+     */
+    public String toString() {
+        String line = "";
+
+        line += "ID: " + eventId + "\n" +
                 "Client IP: " + clientIp + "\n" +
                 "Event: " + event + "\n" +
                 "Download Ticket: " + downloadTicket + "\n" +
                 "Event Type: " + eventType + "\n" +
                 "Email: " + email + "\n" +
                 "Created: " + created.toString();
-            
-            return line;
-        }
+
+        return line;
+    }
 }
