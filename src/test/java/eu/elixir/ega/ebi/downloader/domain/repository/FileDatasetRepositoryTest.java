@@ -19,6 +19,7 @@ package eu.elixir.ega.ebi.downloader.domain.repository;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,7 +52,8 @@ public class FileDatasetRepositoryTest {
 		thenVerifyFileDataset();
 	}
 
-	//@Test
+	@Test
+	@Ignore
 	public void testFindByDatasetId() {
 		givenDataset();
 		whenFindByDatasetIdRequested();
