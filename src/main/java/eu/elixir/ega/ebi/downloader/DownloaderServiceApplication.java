@@ -25,7 +25,9 @@ import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.cache.guava.GuavaCache;
 import org.springframework.cache.support.SimpleCacheManager;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;
+import org.springframework.web.client.RestTemplate;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.spi.DocumentationType;
@@ -48,6 +50,12 @@ public class DownloaderServiceApplication extends SpringBootServletInitializer {
 
     protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
         return application.sources(DownloaderServiceApplication.class);
+    }
+
+    @Bean
+    @LoadBalanced
+    RestTemplate restTemplate() {
+        return new RestTemplate();
     }
 
     //@Bean
