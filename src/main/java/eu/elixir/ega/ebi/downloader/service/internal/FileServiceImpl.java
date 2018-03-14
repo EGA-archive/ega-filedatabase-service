@@ -25,6 +25,7 @@ import eu.elixir.ega.ebi.downloader.dto.DownloaderFile;
 import eu.elixir.ega.ebi.downloader.service.FileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -34,6 +35,7 @@ import java.util.Iterator;
 /**
  * @author asenf
  */
+@Profile("!LocalEGA")
 @Service
 @Transactional
 public class FileServiceImpl implements FileService {
