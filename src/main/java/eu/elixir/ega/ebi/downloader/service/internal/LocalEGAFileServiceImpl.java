@@ -64,7 +64,7 @@ public class LocalEGAFileServiceImpl implements FileService {
     @Override
     @Cacheable(cacheNames = "datasetByFile")
     public Iterable<FileDataset> getFileDatasetByFileId(String fileID) {
-        return Collections.singleton(new FileDataset(fileID, "EGAD00001003195"));
+        return Collections.singleton(new FileDataset(fileID, "EGAD01"));
     }
 
     @Override
