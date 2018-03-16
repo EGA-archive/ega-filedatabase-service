@@ -64,7 +64,7 @@ public class LocalEGAFileServiceImpl implements FileService {
     @Override
     @Cacheable(cacheNames = "datasetByFile")
     public Iterable<FileDataset> getFileDatasetByFileId(String fileID) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return Collections.singleton(new FileDataset(fileID, "EGAD01"));
     }
 
     @Override
