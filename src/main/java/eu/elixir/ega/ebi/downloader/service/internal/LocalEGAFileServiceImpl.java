@@ -15,6 +15,7 @@
  */
 package eu.elixir.ega.ebi.downloader.service.internal;
 
+import com.google.gson.Gson;
 import eu.elixir.ega.ebi.downloader.domain.entity.File;
 import eu.elixir.ega.ebi.downloader.domain.entity.FileDataset;
 import eu.elixir.ega.ebi.downloader.domain.entity.FileIndexFile;
@@ -34,6 +35,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.nio.charset.Charset;
 import java.util.Collections;
+import java.util.HashMap;
 
 @Slf4j
 @Profile("LocalEGA")
@@ -51,13 +53,17 @@ public class LocalEGAFileServiceImpl implements FileService {
         // ResponseEntity<Resource> responseEntity =
         //        restTemplate.getForEntity(fileServiceURL + "/temp/file." + id, Resource.class);
 
-        String filePath = null;
+        File file = null;
         try {
-            filePath = IOUtils.toString(new URL(fileServiceURL + "/temp/file/" + fileIDs).openStream(), Charset.defaultCharset());
+            HashMap response = new Gson().fromJson(IOUtils.toString(new URL(fileServiceURL + "/temp/file/" + fileIDs).openStream(), Charset.defaultCharset()), HashMap.class);
+            String filePath = String.valueOf(response.get("filepath"));
+            long fileSize = Math.round(Double.parseDouble(String.valueOf(response.get("filesize"))));
+            String checksum = String.valueOf(response.get("checksum"));
+            String checksumType = String.valueOf(response.get("algo"));
+            file = new File(fileIDs, filePath, fileSize, checksum, checksumType, "available");
         } catch (IOException e) {
             log.error(e.getMessage(), e);
         }
-        File file = new File(fileIDs, filePath, 0, "", "", "available");
         return Collections.singleton(file);
     }
 
