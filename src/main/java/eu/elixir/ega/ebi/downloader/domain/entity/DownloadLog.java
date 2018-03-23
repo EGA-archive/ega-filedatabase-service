@@ -114,6 +114,9 @@ public class DownloadLog implements Serializable {
                 "Download Status: " + downloadStatus + "\n" +
                 "Download Protocol: " + downloadProtocol + "\n" +
                 "Encryption Type: " + encryptionType + "\n" +
+                "Start Coordinate: " + startCoordinate + "\n" +
+                "End Coordinate: " + endCoordinate + "\n" +
+                "Bytes: " + bytes + "\n" +
                 "Created: " + created.toString();
 
         return line;
