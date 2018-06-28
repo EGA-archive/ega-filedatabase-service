@@ -17,6 +17,7 @@ package eu.elixir.ega.ebi.downloader.domain.repository;
 
 import eu.elixir.ega.ebi.downloader.domain.entity.FileDataset;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
@@ -28,6 +29,10 @@ public interface FileDatasetRepository extends CrudRepository<FileDataset, Strin
     @Cacheable(cacheNames = "byFileId")
     public Iterable<FileDataset> findByFileId(@Param("fileId") String fileId);
 
+    @Cacheable(cacheNames = "byFileIdCustom")
+    @Query("SELECT p.datasetId FROM FileDataset p WHERE p.fileId = :fileId")
+    public Iterable<String> findCustom(@Param("fileId") String fileId);
+    
     @Cacheable(cacheNames = "byDatasetId")
     public Iterable<FileDataset> findByDatasetId(@Param("datasetId") String datasetId);
 

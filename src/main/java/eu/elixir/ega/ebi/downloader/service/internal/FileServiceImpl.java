@@ -58,7 +58,18 @@ public class FileServiceImpl implements FileService {
     @Override
     @Cacheable(cacheNames = "datasetByFile")
     public Iterable<FileDataset> getFileDatasetByFileId(String fileID) {
-        return fileDatasetRepository.findByFileId(fileID);
+        ArrayList<FileDataset> result = new ArrayList<>();
+        Iterable<String> findByFileId = fileDatasetRepository.findCustom(fileID);
+        if (findByFileId!=null) {
+            Iterator<String> iter = findByFileId.iterator();
+            while (iter.hasNext()) {
+                FileDataset fd = new FileDataset(fileID, iter.next());
+                System.out.println(" (--) " + fd.getFileId() + ", " + fd.getDatasetId());
+                result.add(fd);
+            }
+        }
+        return result;
+        //return fileDatasetRepository.findByFileId(fileID);
     }
 
     @Override
