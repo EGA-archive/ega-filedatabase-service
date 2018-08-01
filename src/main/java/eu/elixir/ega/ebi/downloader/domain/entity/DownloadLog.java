@@ -51,7 +51,7 @@ public class DownloadLog implements Serializable {
     @NotNull
     @Size(max = 45)
     @Column(nullable = false, length = 45)
-    private String server;
+    private String api;
 
     @NotNull
     @Size(max = 256)
@@ -74,11 +74,6 @@ public class DownloadLog implements Serializable {
 
     @NotNull
     @Size(max = 256)
-    @Column(name = "download_protocol", nullable = false, length = 256)
-    private String downloadProtocol;
-
-    @NotNull
-    @Size(max = 256)
     @Column(name = "encryption_type", nullable = false, length = 256)
     private String encryptionType;
 
@@ -98,6 +93,10 @@ public class DownloadLog implements Serializable {
     @Column(nullable = false)
     private Timestamp created;
 
+    @NotNull
+    @Size(max = 255)
+    @Column(name = "token_source", nullable = false, length = 255)
+    private String tokenSource;
 
     /*
      *
@@ -107,17 +106,17 @@ public class DownloadLog implements Serializable {
 
         line += "ID: " + downloadLogId + "\n" +
                 "Client IP: " + clientIp + "\n" +
-                "Server: " + server + "\n" +
+                "Server: " + api + "\n" +
                 "Email: " + email + "\n" +
                 "File ID: " + fileId + "\n" +
                 "Download Speed: " + downloadSpeed + "\n" +
                 "Download Status: " + downloadStatus + "\n" +
-                "Download Protocol: " + downloadProtocol + "\n" +
                 "Encryption Type: " + encryptionType + "\n" +
                 "Start Coordinate: " + startCoordinate + "\n" +
                 "End Coordinate: " + endCoordinate + "\n" +
                 "Bytes: " + bytes + "\n" +
-                "Created: " + created.toString();
+                "Created: " + created.toString() + "\n" +
+                "Token Source: " + tokenSource;
 
         return line;
     }

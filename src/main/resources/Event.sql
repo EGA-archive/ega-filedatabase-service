@@ -22,7 +22,6 @@ CREATE TABLE dev_ega_file.event (
 	event_id int8 NOT NULL DEFAULT nextval('dev_ega_file.event_event_id_seq'::regclass),
 	client_ip varchar(45) NOT NULL,
 	event varchar(256) NOT NULL,
-	download_ticket varchar(256) NOT NULL,
 	event_type varchar(256) NOT NULL,
 	email varchar(256) NOT NULL,
 	created timestamp NOT NULL DEFAULT now(),

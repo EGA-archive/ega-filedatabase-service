@@ -45,6 +45,14 @@ public class File implements Serializable {
     @Column(name = "file_name", insertable = false, updatable = false, length = 256)
     private String fileName;
 
+    @Size(max = 256)
+    @Column(name = "file_path", insertable = false, updatable = false, length = 256)
+    private String filePath;
+
+    @Size(max = 128)
+    @Column(name = "display_file_name", insertable = false, updatable = false, length = 128)
+    private String displayFileName;
+
     @Column(name = "file_size", insertable = false, updatable = false)
     private long fileSize;
 
@@ -56,10 +64,21 @@ public class File implements Serializable {
     @Column(name = "checksum_type", insertable = false, updatable = false, length = 12)
     private String checksumType;
 
+    @Size(max = 128)
+    @Column(name = "unencrypted_checksum", insertable = false, updatable = false, length = 128)
+    private String unencryptedChecksum;
+
+    @Size(max = 12)
+    @Column(name = "unencrypted_checksum_type", insertable = false, updatable = false, length = 12)
+    private String unencryptedChecksumType;
+
     @Size(max = 13)
     @Column(name = "file_status", insertable = false, updatable = false, length = 13)
     private String fileStatus;
 
+    @Column(insertable = false, updatable = false)
+    private String header;
+    
     /*
      *
      */

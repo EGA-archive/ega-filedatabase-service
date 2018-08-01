@@ -89,10 +89,11 @@ public class FileServiceImpl implements FileService {
                 File file = iterator.next();
                 result.add(new DownloaderFile(file.getFileId(),
                         next.getDatasetId(),
+                        file.getDisplayFileName(),
                         file.getFileName(),
                         file.getFileSize(),
-                        file.getChecksum(),
-                        file.getChecksumType(),
+                        file.getUnencryptedChecksum(),
+                        file.getUnencryptedChecksumType(),
                         file.getFileStatus()));
             }
         }

@@ -21,17 +21,17 @@
 CREATE TABLE dev_ega_file.download_log (
 	download_log_id int8 NOT NULL DEFAULT nextval('dev_ega_file.download_log_new_download_log_id_seq'::regclass),
 	client_ip varchar(45) NOT NULL,
-	server varchar(45) NOT NULL,
+	api varchar(45) NOT NULL,
 	email varchar(256) NOT NULL,
 	file_id varchar(15) NOT NULL,
 	download_speed float8 NOT NULL DEFAULT '-1'::integer,
 	download_status varchar(256) NOT NULL DEFAULT 'success'::character varying,
-	download_protocol varchar(256) NOT NULL,
 	encryption_type varchar(256) NOT NULL,
 	start_coordinate int8 NOT NULL DEFAULT 0,
 	end_coordinate int8 NOT NULL DEFAULT 0,
 	bytes int8 NOT NULL DEFAULT 0,
-	created timestamp NOT NULL DEFAULT now()
+	created timestamp NOT NULL DEFAULT now(),
+        token_source varchar(255) NOT NULL
 )
 WITH (
 	OIDS=FALSE

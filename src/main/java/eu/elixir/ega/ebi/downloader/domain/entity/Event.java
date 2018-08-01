@@ -55,11 +55,6 @@ public class Event implements Serializable {
 
     @NotNull
     @Size(max = 256)
-    @Column(name = "download_ticket", nullable = false, length = 256)
-    private String downloadTicket;
-
-    @NotNull
-    @Size(max = 256)
     @Column(name = "event_type", nullable = false, length = 256)
     private String eventType;
 
@@ -81,7 +76,6 @@ public class Event implements Serializable {
         line += "ID: " + eventId + "\n" +
                 "Client IP: " + clientIp + "\n" +
                 "Event: " + event + "\n" +
-                "Download Ticket: " + downloadTicket + "\n" +
                 "Event Type: " + eventType + "\n" +
                 "Email: " + email + "\n" +
                 "Created: " + created.toString();
